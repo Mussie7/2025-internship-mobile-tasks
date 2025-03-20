@@ -68,7 +68,17 @@ class ProductManager {
     return products;
   }
 }
+Function inputId = () {
+  print('Enter product ID: ');
+  int? id = int.tryParse(stdin.readLineSync()!);
+  if (id == null) {
+    print('Invalid ID. Please enter a non-null, integer value.');
+    return null;
+  }
+  return id;
+};
 
+// E-Commerce App
 void ecommerceApp() {
   ProductManager productManager = ProductManager();
 
@@ -130,8 +140,10 @@ void ecommerceApp() {
       }
     } else if (choice == 3) {
       // Show product by ID
-      print('Enter product ID: ');
-      int id = int.parse(stdin.readLineSync()!);
+      int? id = inputId();
+      if (id == null) {
+        continue;
+      }
       Product? product = productManager.getProductById(id);
       if (product == null) {
         print('Product not found');
@@ -140,8 +152,10 @@ void ecommerceApp() {
       product.display();
     } else if (choice == 4) {
       // Edit product by ID
-      print('Enter product ID: ');
-      int id = int.parse(stdin.readLineSync()!);
+      int? id = inputId();
+      if (id == null) {
+        continue;
+      }
       if (productManager.getProductById(id) == null) {
         print('Product not found');
         continue;
@@ -157,8 +171,10 @@ void ecommerceApp() {
       productManager.getProductById(id)!.display();
     } else if (choice == 5) {
       // Delete product by ID
-      print('Enter product ID: ');
-      int id = int.parse(stdin.readLineSync()!);
+      int? id = inputId();
+      if (id == null) {
+        continue;
+      }
       if (productManager.getProductById(id) == null) {
         print('Product not found');
         continue;
