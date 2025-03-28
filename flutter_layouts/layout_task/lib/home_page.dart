@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -65,33 +66,33 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           Container(
             margin: EdgeInsets.only(right: 20.0),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(9.0), color: Colors.white),
-            child: IconButton(onPressed: () {}, icon: Icon(Icons.notifications_none)),
+            child: IconButton(
+              onPressed: () {
+                debugPrint('Notification button tapped');
+              },
+              icon: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(9.0),
+                  border: Border.all(color: Colors.grey, width: 0.5),
+                ),
+                padding: EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  'assets/icons/iconsax-svg/Svg/All/outline/notification-bing.svg',
+                  width: 16,
+                  height: 16,
+                ),
+              ),
+            ),
           ),
         ],
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-
-        color: Colors.white,
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
             Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
