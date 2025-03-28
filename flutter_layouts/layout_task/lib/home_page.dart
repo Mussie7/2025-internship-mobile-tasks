@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:layout_task/product.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,12 +27,77 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  List<Card> _buildListCards(BuildContext context) {
+    List<Product> products = [
+      Product(
+        category: "Men's Shoes",
+        imageAssetPath: '',
+        description:
+            "A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.",
+        name: "Derby Leather Shoes",
+        price: 120.0,
+      ),
+      Product(
+        category: "Men's Shoes",
+        imageAssetPath: '',
+        description:
+            "A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.",
+        name: "Derby Leather Shoes",
+        price: 120.0,
+      ),
+      Product(
+        category: "Men's Shoes",
+        imageAssetPath: '',
+        description:
+            "A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.",
+        name: "Derby Leather Shoes",
+        price: 120.0,
+      ),
+    ];
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    if (products.isEmpty) {
+      return const <Card>[];
+    }
+
+    final ThemeData theme = Theme.of(context);
+    return products.map((product) {
+      return Card(
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            AspectRatio(aspectRatio: 18 / 11, child: Image.asset(product.imageAssetPath, fit: BoxFit.fitWidth)),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(product.name, style: GoogleFonts.poppins(fontSize: 14.0), maxLines: 1),
+                        Text('\$${product.price}', style: GoogleFonts.poppins(fontSize: 8.0)),
+                      ],
+                    ),
+                    const SizedBox(height: 8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(product.category, style: GoogleFonts.poppins(fontSize: 12.0, color: theme.primaryColor)),
+                        Row(
+                          children: [Icon(Icons.star_rate_rounded), SizedBox(width: 2.0), Text("(${product.rating})")],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
   }
 
   @override
@@ -88,22 +155,48 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+        margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Available Products", style: GoogleFonts.poppins(fontSize: 24.0, fontWeight: FontWeight.w600)),
+                IconButton(
+                  onPressed: () {
+                    debugPrint("search button pressed");
+                  },
+                  icon: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9.0),
+                      border: Border.all(color: Color(0xFFD9D9D9), width: 1),
+                    ),
+                    padding: EdgeInsets.all(6.0),
+                    child: SvgPicture.asset(
+                      'assets/icons/iconsax-svg/Svg/Category/Search/vuesax/outline/search-normal-1.svg',
+                      width: 16,
+                      height: 16,
+                      colorFilter: ColorFilter.mode(Color(0xFFD9D9D9), BlendMode.srcIn),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        onPressed: () {},
+        tooltip: '',
+        shape: ShapeBorder.lerp(CircleBorder(), StadiumBorder(), 0.5),
+        child: SvgPicture.asset(
+          'assets/icons/iconsax-svg/Svg/All/outline/add.svg',
+          width: 44,
+          height: 44,
+          colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+        ),
+      ),
     );
   }
 }
