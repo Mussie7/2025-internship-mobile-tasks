@@ -56,12 +56,6 @@
       "languageVersion": "3.5"
     },
     {
-      "name": "flutter_svg",
-      "rootUri": "file:///C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-1.1.6",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "flutter_test",
       "rootUri": "file:///C:/Dev/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -114,24 +108,6 @@
       "rootUri": "file:///C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
-    },
-    {
-      "name": "path_drawing",
-      "rootUri": "file:///C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/path_drawing-1.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "path_parsing",
-      "rootUri": "file:///C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/path_parsing-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
-      "name": "petitparser",
-      "rootUri": "file:///C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-6.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.5"
     },
     {
       "name": "sky_engine",
@@ -188,19 +164,13 @@
       "languageVersion": "3.3"
     },
     {
-      "name": "xml",
-      "rootUri": "file:///C:/Users/hp/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.5.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
-    },
-    {
       "name": "layout_task",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-03-28T07:14:26.014163Z",
+  "generated": "2025-03-28T07:33:11.922701Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///C:/Dev/flutter",
