@@ -65,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                         maxLines: 1,
                       ),
                       Text(
-                        '\$${product.price}',
+                        '\$${product.price.toString()}',
                         style: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.w600),
                       ),
                     ],
