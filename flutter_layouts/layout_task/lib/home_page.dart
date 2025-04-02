@@ -55,10 +55,10 @@ class MyHomePage extends StatelessWidget {
       return const <Card>[];
     }
 
-    final ThemeData theme = Theme.of(context);
     return products.map((product) {
       return Card(
         clipBehavior: Clip.antiAlias,
+        color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -75,16 +75,32 @@ class MyHomePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(product.name, style: GoogleFonts.poppins(fontSize: 14.0), maxLines: 1),
-                      Text('\$${product.price}', style: GoogleFonts.poppins(fontSize: 8.0)),
+                      Text(
+                        product.name,
+                        style: GoogleFonts.poppins(fontSize: 18.0, fontWeight: FontWeight.w600),
+                        maxLines: 1,
+                      ),
+                      Text(
+                        '\$${product.price}',
+                        style: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(product.category, style: GoogleFonts.poppins(fontSize: 12.0, color: theme.primaryColor)),
-                      Row(children: [Icon(Icons.star_rate_rounded), SizedBox(width: 2.0), Text("(${product.rating})")]),
+                      Text(product.category, style: GoogleFonts.poppins(fontSize: 10.0, color: Color(0xFFAAAAAA))),
+                      Row(
+                        children: [
+                          Icon(Icons.star_rate_rounded, color: Color(0xFFFFD700), size: 20.0),
+                          SizedBox(width: 2.0),
+                          Text(
+                            "(${product.rating.toString()})",
+                            style: GoogleFonts.sora(color: Color(0xFFAAAAAA), fontSize: 10.0),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],
@@ -115,13 +131,16 @@ class MyHomePage extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Mar 27, 2025', style: TextStyle(fontWeight: FontWeight.w200, fontSize: 12.0)),
+            Text(
+              'Mar 27, 2025',
+              style: GoogleFonts.syne(fontWeight: FontWeight.w200, fontSize: 12.0, color: Color(0xFFAAAAAA)),
+            ),
             SizedBox(height: 2.0),
             Text.rich(
               TextSpan(
                 text: 'Hello, ',
-                style: TextStyle(fontSize: 16),
-                children: [TextSpan(text: 'John', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))],
+                style: GoogleFonts.sora(fontSize: 14, fontWeight: FontWeight.w300),
+                children: [TextSpan(text: 'John', style: GoogleFonts.sora(fontSize: 14, fontWeight: FontWeight.bold))],
               ),
             ),
           ],
