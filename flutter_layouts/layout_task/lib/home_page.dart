@@ -2,23 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:layout_task/product.dart';
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(color: Colors.white),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: const Color(0xFF3F51F3)),
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
+import 'package:layout_task/product_detail_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -177,7 +161,7 @@ class MyHomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Available Products", style: GoogleFonts.poppins(fontSize: 24.0, fontWeight: FontWeight.w600)),
+                Text("Available Products", style: GoogleFonts.poppins(fontSize: 21.0, fontWeight: FontWeight.w600)),
                 IconButton(
                   onPressed: () {
                     debugPrint("search button pressed");
@@ -199,7 +183,22 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.0),
-            Expanded(child: ListView(shrinkWrap: true, children: _buildListCards(context))),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children:
+                    _buildListCards(context).map((card) {
+                      return InkWell(
+                        // Handle the tap event here, e.g., navigate to a detail page
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailPage()));
+                          debugPrint("Card tapped");
+                        },
+                        child: card,
+                      );
+                    }).toList(),
+              ),
+            ),
           ],
         ),
       ),
