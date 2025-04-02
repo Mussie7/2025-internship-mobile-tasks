@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(color: Colors.white),
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Product> products = [
       Product(
         category: "Men's Shoes",
-        imageAssetPath: '',
+        imageAssetPath: 'assets/images/mens_shoe_1.jpg',
         description:
             "A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.",
         name: "Derby Leather Shoes",
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       Product(
         category: "Men's Shoes",
-        imageAssetPath: '',
+        imageAssetPath: 'assets/images/mens_shoe_2.jpg',
         description:
             "A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.",
         name: "Derby Leather Shoes",
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       Product(
         category: "Men's Shoes",
-        imageAssetPath: '',
+        imageAssetPath: 'assets/images/mens_shoe_3.jpg',
         description:
             "A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.",
         name: "Derby Leather Shoes",
@@ -66,32 +66,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            AspectRatio(aspectRatio: 18 / 11, child: Image.asset(product.imageAssetPath, fit: BoxFit.fitWidth)),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(product.name, style: GoogleFonts.poppins(fontSize: 14.0), maxLines: 1),
-                        Text('\$${product.price}', style: GoogleFonts.poppins(fontSize: 8.0)),
-                      ],
-                    ),
-                    const SizedBox(height: 8.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(product.category, style: GoogleFonts.poppins(fontSize: 12.0, color: theme.primaryColor)),
-                        Row(
-                          children: [Icon(Icons.star_rate_rounded), SizedBox(width: 2.0), Text("(${product.rating})")],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+            SizedBox(
+              height: 150,
+              width: double.infinity,
+              child: Image.asset(product.imageAssetPath, fit: BoxFit.cover),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(product.name, style: GoogleFonts.poppins(fontSize: 14.0), maxLines: 1),
+                      Text('\$${product.price}', style: GoogleFonts.poppins(fontSize: 8.0)),
+                    ],
+                  ),
+                  const SizedBox(height: 8.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(product.category, style: GoogleFonts.poppins(fontSize: 12.0, color: theme.primaryColor)),
+                      Row(children: [Icon(Icons.star_rate_rounded), SizedBox(width: 2.0), Text("(${product.rating})")]),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
@@ -183,6 +183,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            SizedBox(height: 20.0),
+            Expanded(child: ListView(shrinkWrap: true, children: _buildListCards(context))),
           ],
         ),
       ),

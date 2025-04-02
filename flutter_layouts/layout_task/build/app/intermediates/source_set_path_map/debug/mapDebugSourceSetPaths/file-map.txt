@@ -25,3 +25,4 @@ com.example.layout_task.app-resValues-23 C:\Users\hp\Desktop\2025-internship-mob
 com.example.layout_task.app-packageDebugResources-24 C:\Users\hp\Desktop\2025-internship-mobile-tasks\flutter_layouts\layout_task\build\app\intermediates\incremental\debug\packageDebugResources\merged.dir
 com.example.layout_task.app-packageDebugResources-25 C:\Users\hp\Desktop\2025-internship-mobile-tasks\flutter_layouts\layout_task\build\app\intermediates\incremental\debug\packageDebugResources\stripped.dir
 com.example.layout_task.app-debug-26 C:\Users\hp\Desktop\2025-internship-mobile-tasks\flutter_layouts\layout_task\build\app\intermediates\merged_res\debug\mergeDebugResources
+com.example.layout_task.app-debug-27 C:\Users\hp\Desktop\2025-internship-mobile-tasks\flutter_layouts\layout_task\build\path_provider_android\intermediates\packaged_res\debug\packageDebugResources

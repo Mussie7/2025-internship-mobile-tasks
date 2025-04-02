@@ -5,6 +5,7 @@ class Product {
     required this.description,
     required this.name,
     required this.price,
+    this.rating = 4.0,
   });
 
   final String category;
@@ -12,5 +13,5 @@ class Product {
   final String description;
   final String name;
   final double price;
-  final double rating = 4.0;
+  final double rating;
 }
