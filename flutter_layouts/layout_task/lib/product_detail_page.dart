@@ -11,6 +11,7 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
+  int? selectedSize; // Holds the currently selected shoe size
   // Sample product data
   Product product = Product(
     category: "Men's Shoes",
@@ -22,7 +23,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   );
 
   // Helper method to build a list of size cards
-  List<Card> _buildSizeCards(BuildContext context) {
+  List<GestureDetector> _buildSizeCards(BuildContext context) {
     int startingSize = 39; // Starting shoe size
     int endingSize = 45; // Ending shoe size
 
@@ -30,13 +31,30 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       endingSize - startingSize + 1, // Number of cards
       (index) {
         int size = startingSize + index;
-        return Card(
-          color: Colors.white,
-          child: Container(
-            width: 50,
-            height: 50,
-            alignment: Alignment.center,
-            child: Text(size.toString(), style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w600)),
+        bool isSelected = size == selectedSize; // Check if this size is selected
+
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedSize = isSelected ? null : size; // Toggle selection
+              debugPrint('Selected size: $size'); // Debug print for selected size
+            });
+          },
+          child: Card(
+            color: isSelected ? Theme.of(context).primaryColor : Colors.white,
+            child: Container(
+              width: 50,
+              height: 60,
+              alignment: Alignment.center,
+              child: Text(
+                size.toString(),
+                style: GoogleFonts.poppins(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                  color: isSelected ? Colors.white : Colors.black,
+                ),
+              ),
+            ),
           ),
         );
       },
@@ -111,7 +129,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     Text("Size:", style: GoogleFonts.poppins(fontSize: 18.0, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 15), // Spacing
                     SizedBox(
-                      height: 50, // Height of the size cards
+                      height: 60, // Height of the size cards
                       child: ListView(scrollDirection: Axis.horizontal, children: _buildSizeCards(context)),
                     ),
                     const SizedBox(height: 15), // Spacing
