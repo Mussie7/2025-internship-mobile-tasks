@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:layout_task/product.dart';
 
+// Main widget for the product detail page
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({super.key});
 
@@ -10,6 +11,7 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
+  // Sample product data
   Product product = Product(
     category: "Men's Shoes",
     imageAssetPath: 'assets/images/mens_shoe_2.jpg',
@@ -19,9 +21,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     price: 120.0,
   );
 
+  // Helper method to build a list of size cards
   List<Card> _buildSizeCards(BuildContext context) {
-    int startingSize = 39;
-    int endingSize = 45;
+    int startingSize = 39; // Starting shoe size
+    int endingSize = 45; // Ending shoe size
 
     return List.generate(
       endingSize - startingSize + 1, // Number of cards
@@ -43,70 +46,108 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(color: Colors.white),
+      width: MediaQuery.of(context).size.width, // Full screen width
+      height: MediaQuery.of(context).size.height, // Full screen height
+      padding: const EdgeInsets.only(bottom: 20.0), // Margin for the bottom
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        // borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0), bottomLeft: Radius.circular(30.0)),
+      ),
       child: Column(
         children: [
+          // Product image
           Image.asset(
             product.imageAssetPath,
-            height: MediaQuery.of(context).size.height * 0.35,
+            height: MediaQuery.of(context).size.height * 0.35, // 35% of screen height
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: DefaultTextStyle(
-              style: TextStyle(decoration: TextDecoration.none, color: Colors.black),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(product.category, style: GoogleFonts.poppins(fontSize: 13.0, color: Color(0xFFAAAAAA))),
-                      Row(
-                        children: [
-                          Icon(Icons.star_rate_rounded, color: Color(0xFFFFD700), size: 20.0),
-                          SizedBox(width: 2.0),
-                          Text(
-                            "(${product.rating.toString()})",
-                            style: GoogleFonts.sora(color: Color(0xFFAAAAAA), fontSize: 13.0),
+          const SizedBox(height: 20), // Spacing
+          // Product details section
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: DefaultTextStyle(
+                style: TextStyle(decoration: TextDecoration.none, color: Colors.black),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Category and rating row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(product.category, style: GoogleFonts.poppins(fontSize: 13.0, color: Color(0xFFAAAAAA))),
+                        Row(
+                          children: [
+                            Icon(Icons.star_rate_rounded, color: Color(0xFFFFD700), size: 20.0), // Star icon
+                            SizedBox(width: 2.0), // Spacing
+                            Text(
+                              "(${product.rating.toString()})", // Product rating
+                              style: GoogleFonts.sora(color: Color(0xFFAAAAAA), fontSize: 13.0),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15), // Spacing
+                    // Product name and price row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          product.name, // Product name
+                          style: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w600),
+                          maxLines: 1,
+                        ),
+                        Text(
+                          '\$${product.price.toString()}', // Product price
+                          style: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15), // Spacing
+                    // Size selection section
+                    Text("Size:", style: GoogleFonts.poppins(fontSize: 18.0, fontWeight: FontWeight.w500)),
+                    const SizedBox(height: 15), // Spacing
+                    SizedBox(
+                      height: 50, // Height of the size cards
+                      child: ListView(scrollDirection: Axis.horizontal, children: _buildSizeCards(context)),
+                    ),
+                    const SizedBox(height: 15), // Spacing
+                    // Product description
+                    Text(
+                      product.description,
+                      textAlign: TextAlign.justify, // Justified text alignment
+                      style: GoogleFonts.poppins(fontSize: 13.0, fontWeight: FontWeight.w500, color: Color(0xFF666666)),
+                    ),
+                    Spacer(), // Spacer to push the button to the bottom
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        OutlinedButton(
+                          onPressed: () {
+                            debugPrint("Delete button pressed"); // Action for delete button
+                          },
+                          style: OutlinedButton.styleFrom(side: BorderSide(color: Color(0xFFFF1313), width: 1.0)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Text("DELETE", style: GoogleFonts.poppins(fontSize: 13, color: Color(0xFFFF1313))),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        product.name,
-                        style: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w600),
-                        maxLines: 1,
-                      ),
-                      Text(
-                        '\$${product.price.toString()}',
-                        style: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Text("Size:", style: GoogleFonts.poppins(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    height: 50,
-                    child: ListView(scrollDirection: Axis.horizontal, children: _buildSizeCards(context)),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    product.description,
-                    textAlign: TextAlign.justify,
-                    style: GoogleFonts.poppins(fontSize: 13.0, fontWeight: FontWeight.w500, color: Color(0xFF666666)),
-                  ),
-                ],
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            debugPrint("Update button pressed"); // Action for update button
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Text("UPDATE", style: GoogleFonts.poppins(fontSize: 13, color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -15,6 +15,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(color: Colors.white),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF3F51F3),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+            side: const BorderSide(color: Color(0xFF3F51F3), width: 1.0),
+          ),
+        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: const Color(0xFF3F51F3)),
       ),
       home: const MyHomePage(),
