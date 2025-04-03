@@ -52,10 +52,11 @@ class _AddProductPageState extends State<AddProductPage> {
         title: Text('Add Product', style: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w500)),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        padding: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 10.0),
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: SingleChildScrollView(
@@ -220,52 +221,48 @@ class _AddProductPageState extends State<AddProductPage> {
                           return null;
                         },
                       ),
-                      // Spacer(),
-                      SizedBox(height: 20),
-                      // Submit button
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            // Process the product data here
-                            debugPrint('Product Added: ${_nameController.text}');
-                            ScaffoldMessenger.of(
-                              context,
-                            ).showSnackBar(SnackBar(content: Text('Product Added Successfully.')));
-                          }
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(
-                            "ADD",
-                            style: GoogleFonts.poppins(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      // Delete button
-                      OutlinedButton(
-                        onPressed: () {
-                          // Handle product deletion
-                          setState(() {
-                            _imageFile = null;
-                            _nameController.clear();
-                            _categoryController.clear();
-                            _priceController.clear();
-                            _descriptionController.clear();
-                          });
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product Deleted')));
-                        },
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.red, width: 1.0), // Border color
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                        ),
-                        child: Text(
-                          'DELETE',
-                          style: GoogleFonts.poppins(fontSize: 12, color: Colors.red, fontWeight: FontWeight.w500),
-                        ),
-                      ),
+                      SizedBox(height: 16),
                     ],
                   ),
+                ),
+              ),
+              // Add Product button
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Process the product data here
+                    debugPrint('Product Added: ${_nameController.text}');
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product Added Successfully.')));
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                    "ADD",
+                    style: GoogleFonts.poppins(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+              // Delete button
+              OutlinedButton(
+                onPressed: () {
+                  // Handle product deletion
+                  setState(() {
+                    _imageFile = null;
+                    _nameController.clear();
+                    _categoryController.clear();
+                    _priceController.clear();
+                    _descriptionController.clear();
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Product Deleted')));
+                },
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: Colors.red, width: 1.0), // Border color
+                ),
+                child: Text(
+                  'DELETE',
+                  style: GoogleFonts.poppins(fontSize: 12, color: Colors.red, fontWeight: FontWeight.w500),
                 ),
               ),
             ],
