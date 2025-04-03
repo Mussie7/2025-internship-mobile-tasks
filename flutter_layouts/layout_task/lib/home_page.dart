@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:layout_task/add_product_page.dart';
 import 'package:layout_task/product.dart';
 import 'package:layout_task/product_detail_page.dart';
 
@@ -99,7 +100,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: Container(
           margin: const EdgeInsets.only(left: 20.0),
@@ -203,8 +203,11 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: '',
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddProductPage()));
+          debugPrint("Add Product button tapped");
+        },
+        tooltip: 'Add Product',
         shape: ShapeBorder.lerp(CircleBorder(), StadiumBorder(), 0.5),
         child: SvgPicture.asset(
           'assets/icons/iconsax-svg/Svg/All/outline/add.svg',
