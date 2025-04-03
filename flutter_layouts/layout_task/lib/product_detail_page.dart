@@ -73,12 +73,33 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ),
       child: Column(
         children: [
-          // Product image
-          Image.asset(
-            product.imageAssetPath,
-            height: MediaQuery.of(context).size.height * 0.35, // 35% of screen height
-            width: double.infinity,
-            fit: BoxFit.cover,
+          // Product image with back button
+          Stack(
+            children: [
+              Image.asset(
+                product.imageAssetPath,
+                height: MediaQuery.of(context).size.height * 0.35, // 35% of screen height
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                top: 60.0, // Position from the top
+                left: 20.0, // Position from the left
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context); // Navigate back to the previous screen
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white, // Semi-transparent background
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.arrow_back_ios_new_rounded, color: Theme.of(context).primaryColor, size: 18.0),
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20), // Spacing
           // Product details section
