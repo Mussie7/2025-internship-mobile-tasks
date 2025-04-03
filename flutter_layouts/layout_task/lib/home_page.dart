@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:layout_task/add_product_page.dart';
 import 'package:layout_task/product.dart';
 import 'package:layout_task/product_detail_page.dart';
+import 'package:layout_task/search_product_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -164,6 +165,7 @@ class MyHomePage extends StatelessWidget {
                 Text("Available Products", style: GoogleFonts.poppins(fontSize: 21.0, fontWeight: FontWeight.w600)),
                 IconButton(
                   onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchProductPage()));
                     debugPrint("search button pressed");
                   },
                   icon: Container(
